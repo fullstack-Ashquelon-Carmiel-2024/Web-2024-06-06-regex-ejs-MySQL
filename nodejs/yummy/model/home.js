@@ -15,13 +15,14 @@ module.exports = {
 
       }
 
+      // Controller (we've got it here close to the Model)
       res.render('index.ejs', {
         title: 'Yummy',
         food: result
       })
 
     })
-``
+
   },
   
   getSampleHomePage: (req,res) => {
