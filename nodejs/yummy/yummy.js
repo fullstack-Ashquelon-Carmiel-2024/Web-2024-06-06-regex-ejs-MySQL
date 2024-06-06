@@ -31,6 +31,8 @@ db.connect(err => {
 
 })
 
+global.db = db;
+
 /***** CREATE THE SERVER ******/
 const app = express();
 
@@ -39,10 +41,13 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname,'views'));
 
+/******* MIDDLEWARE *********/
+app.use(express.static(path.join(__dirname,'static')));
+
 /******* ROUTING *********/
 // GET - HTTP method, that asks to bring some
 // data or page, sometimes, in accordance to parameters
-app.get('/',home.getSmallHomePage);
+app.get('/',home.getHomePage);
 
 /*********LISTENER *********/
 app.listen(port, () => {

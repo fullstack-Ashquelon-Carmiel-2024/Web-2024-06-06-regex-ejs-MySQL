@@ -1,17 +1,41 @@
 module.exports = {
+
+  getHomePage: (req,res) => {
+
+    let querySQL = 'SELECT * FROM food';
+
+    db.query(querySQL,(err, result) => {
+
+      if (err) {
+
+        console.log(err.message);
+        return res.status(500).send(`<h1>ERROR: ${err.message} \n
+             while performing \n
+             ${querySQL}</h1>`);
+
+      }
+
+      res.render('index.ejs', {
+        title: 'Yummy',
+        food: result
+      })
+
+    })
+``
+  },
   
   getSampleHomePage: (req,res) => {
 
     res.render('index.ejs',
       {title: 'Yummy',
-       foods: [ 
+       food: [ 
         {
          id: 1,
          name: 'chumus masbacha',
-         cosher_type: 'parve',
+         kosher_type: 'parve',
          cuisine_id: 1,
          image: 'chummus-masbacha.jpg', 
-         kalories: 550, 
+         calories: 550, 
          prepare_time_min: 120, 
          ingredients: 'chumus, tchina, oil',  
          type_of_dish: 'main'
@@ -19,10 +43,10 @@ module.exports = {
         {
          id: 2,
          name: 'sushi',
-         cosher_type: 'parve',
+         kosher_type: 'parve',
          cuisine_id: 2,
          image: 'sushi.jpeg',
-         kalories: 250, 
+         calories: 250, 
          prepare_time_min: 90, 
          ingredients: 'rice, nuri, avocado',  
          type_of_dish: 'main'
