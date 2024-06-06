@@ -2,8 +2,9 @@ const express = require('express');
 const mysql = require('mysql2');
 const path = require('path');
 require('ejs');
+const fs = require('fs');
 
-const getHomePage = require('./model/home');
+const home = require('./model/home');
 
 /********** VARIABLES **********/
 let port = process.env.PORT ? process.env.PORT : 3053;
@@ -39,7 +40,9 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname,'views'));
 
 /******* ROUTING *********/
-app.get('/',getHomePage);
+// GET - HTTP method, that asks to bring some
+// data or page, sometimes, in accordance to parameters
+app.get('/',home.getSmallHomePage);
 
 /*********LISTENER *********/
 app.listen(port, () => {

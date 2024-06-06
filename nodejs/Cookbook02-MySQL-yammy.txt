@@ -376,4 +376,17 @@ app.listen(port, () => {
 
 })
 
-18.
+18. Change module.exports in modele/home.js 
+to enable it to be comprised  of several named
+functions:
+
+module.exports = {
+  
+  getSmallHomePage: (req,res) => {
+
+    res.render('small-index.ejs',
+      {title: 'Yummy'})
+
+  }
+
+}
